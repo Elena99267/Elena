@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Character Heights</title>
+    <style>
+        #charactersContainer {
+            display: flex;
+            align-items: flex-end;
+        }
+        .character {
+            margin: 10px;
+            width: 50px;
+            background: lightblue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Character Heights</h1>
+    <form id="characterForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        
+        <label for="species">Species:</label>
+        <input type="text" id="species" name="species"><br><br>
+        
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height"><br><br>
+        
+        <button type="button" onclick="addCharacter()">Add Character</button>
+    </form>
+    <div id="charactersContainer"></div>
+
+    <script>
+        let characters = [];
+
+        function addCharacter() {
+            const name = document.getElementById('name').value;
+            const species = document.getElementById('species').value;
+            const height = document.getElementById('height').value;
+
+            const character = { name, species, height };
+            characters.push(character);
+            displayCharacters();
+        }
+
+        function displayCharacters() {
+            const container = document.getElementById('charactersContainer');
+            container.innerHTML = '';
+
+            characters.forEach(character => {
+                const characterDiv = document.createElement('div');
+                characterDiv.classList.add('character');
+                characterDiv.innerHTML = `<strong>${character.name}</strong><br>${character.species}<br>${character.height} cm`;
+                characterDiv.style.height = `${character.height}px`;
+                container.appendChild(characterDiv);
+            });
+        }
+    </script>
+</body>
+</html>
 
